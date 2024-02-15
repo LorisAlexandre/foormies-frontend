@@ -1,4 +1,4 @@
-import { DashboardNavbar } from "@/components/";
+import { DashboardNavbar } from "@/components";
 
 export default function DashboardPage() {
   return (

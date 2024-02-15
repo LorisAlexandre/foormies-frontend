@@ -15,16 +15,16 @@ export const DropdownProject = ({ projectName }: { projectName?: string }) => {
       </h2>
       <div
         onClick={() => setOpenDropdown(!openDropdown)}
-        className="flex flex-col gap-4 relative"
+        className="flex flex-col gap-4 relative cursor-pointer"
       >
         <Chevron orientation="up" />
         <Chevron orientation="down" />
         {openDropdown && (
-          <div className="absolute top-[120%] flex flex-col w-max p-2 border border-primary-400 rounded-sm">
-            <h2>My forms</h2>
+          <div className="absolute top-[120%] flex flex-col w-max p-2 border border-primary-400 rounded-sm bg-white">
+            <h2 className="font-semibold">My forms</h2>
             <ul>
-              <li>Formulaire 1</li>
-              <li>Formulaire 2</li>
+              <li className="cursor-pointer">Formulaire 1</li>
+              <li className="cursor-pointer">Formulaire 2</li>
             </ul>
             <AddSomething
               handleClick={createNewProject}

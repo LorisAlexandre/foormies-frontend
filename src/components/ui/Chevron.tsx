@@ -14,7 +14,7 @@ export const Chevron = ({ orientation }: { orientation: string }) => {
           >
             <path
               d="M15 8L8 1L1 8"
-              stroke="#09090B"
+              stroke="#495f41"
               strokeWidth="2"
               strokeLinecap="round"
               strokeLinejoin="round"
@@ -34,7 +34,7 @@ export const Chevron = ({ orientation }: { orientation: string }) => {
           >
             <path
               d="M15 8L8 1L1 8"
-              stroke="#09090B"
+              stroke="#495f41"
               strokeWidth="2"
               strokeLinecap="round"
               strokeLinejoin="round"
@@ -54,7 +54,7 @@ export const Chevron = ({ orientation }: { orientation: string }) => {
           >
             <path
               d="M15 8L8 1L1 8"
-              stroke="#09090B"
+              stroke="#495f41"
               strokeWidth="2"
               strokeLinecap="round"
               strokeLinejoin="round"
@@ -74,7 +74,7 @@ export const Chevron = ({ orientation }: { orientation: string }) => {
           >
             <path
               d="M15 8L8 1L1 8"
-              stroke="#09090B"
+              stroke="#495f41"
               strokeWidth="2"
               strokeLinecap="round"
               strokeLinejoin="round"
@@ -93,7 +93,7 @@ export const Chevron = ({ orientation }: { orientation: string }) => {
           >
             <path
               d="M15 8L8 1L1 8"
-              stroke="#09090B"
+              stroke="#495f41"
               strokeWidth="2"
               strokeLinecap="round"
               strokeLinejoin="round"
