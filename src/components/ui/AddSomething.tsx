@@ -22,9 +22,9 @@ export const AddSomething = ({
         <path
           d="M8.07107 1.42893V15.5711M1 8.5H15.1421"
           stroke="black"
-          stroke-width="1.2"
-          stroke-linecap="round"
-          stroke-linejoin="round"
+          strokeWidth="1.2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
         />
       </svg>
       <p>{text}</p>

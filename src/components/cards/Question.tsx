@@ -2,16 +2,36 @@ import { Button } from "../ui";
 
 export interface QuestionType {
   title: string;
-  questionType: string;
-  requiredQuestion: boolean;
+  statement?: string;
+  confidential?: boolean;
+  instructions?: string;
+  hint?: string;
+  file?: {
+    url?: string;
+  };
+  section?: number;
+  inputProps: {
+    questionType?: string;
+    label?: string;
+    placeholder?: string;
+    options?: string | string[];
+    minLength?: number;
+    maxLength?: number;
+    minValue?: number;
+    maxValue?: number;
+    pattern?: string;
+    multiple?: boolean;
+    rank?: number;
+    requiredQuestion?: boolean;
+  };
 }
 
 export const Question = (props: QuestionType) => {
   return (
     <div className="flex w-[640px] border border-primary-950 px-5 py-2 items-center justify-between">
       <p className="max-w-[300px]">{props.title}</p>
-      <p>{props.questionType}</p>
-      {props.requiredQuestion && <p>Required</p>}
+      <p>{props.inputProps.questionType}</p>
+      {props.inputProps.requiredQuestion && <p>Required</p>}
       <Button className="bg-transparent hover:bg-transparent cursor-grab">
         <svg
           width="11"

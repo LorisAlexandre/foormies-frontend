@@ -6,7 +6,7 @@ export const DashboardNavbar = ({ form }: { form?: Object }) => {
     if (!form) {
       return (
         <div className="flex justify-between p-10">
-          <DropdownProject />
+          <DropdownProject projectsName={[]} />
           <User />
         </div>
       );

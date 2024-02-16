@@ -7,16 +7,22 @@ export const MyQuestionsWidget = ({
 }: {
   handleSelection: Function;
 }) => {
-  const questions = [
+  const questions: QuestionType[] = [
     {
       title: "Quel est votre plus grande préoccupation ?",
-      questionType: "text",
-      requiredQuestion: true,
+      confidential: true,
+      inputProps: {
+        questionType: "text",
+        requiredQuestion: true,
+      },
     },
     {
       title: "Quel est votre type de peau ?",
-      questionType: "text",
-      requiredQuestion: true,
+      confidential: false,
+      inputProps: {
+        questionType: "text",
+        requiredQuestion: true,
+      },
     },
   ];
   // const [questions, setQuestions] = useState<QuestionType[]>([]);
