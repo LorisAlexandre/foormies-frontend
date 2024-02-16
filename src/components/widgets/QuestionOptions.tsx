@@ -18,6 +18,7 @@ export const QuestionOptions = ({
     setOptions((opt) => updateNestedObject(opt, fieldName, value));
   };
 
+  // Corriger erreur de typage !!
   // Fonction récursive qui update jusqu'à ce qu'il n'y est plus de nested prop
   const updateNestedObject = <T extends object>(
     obj: T,
