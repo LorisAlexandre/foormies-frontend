@@ -18,9 +18,8 @@ export const QuestionOptions = ({
     setOptions((opt) => updateNestedObject(opt, fieldName, value));
   };
 
-  // Corriger erreur de typage !!
   // Fonction récursive qui update jusqu'à ce qu'il n'y est plus de nested prop
-  const updateNestedObject = <T extends object>(
+  const updateNestedObject = <T extends { [x: string]: any }>(
     obj: T,
     path: string | string[],
     value: any
@@ -37,10 +36,10 @@ export const QuestionOptions = ({
     if (currentPath !== undefined) {
       // si un seul alors on update
       if (path.length === 0) {
-        updatedObject[currentPath] = value;
+        (updatedObject[currentPath] as T) = value;
       } //sinon récursivité {
       else
-        updatedObject[currentPath] = updateNestedObject(
+        (updatedObject[currentPath] as T) = updateNestedObject(
           updatedObject[currentPath],
           path,
           value
