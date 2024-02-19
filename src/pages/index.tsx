@@ -1,9 +1,20 @@
 import { Login, Register } from "@/components";
 import { Button, Logo } from "@/components/ui";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import { IRootState } from "./_app";
+import { useRouter } from "next/router";
 
 export default function Home() {
+  const user = useSelector((state: IRootState) => state.user);
+  const router = useRouter();
   const [login, setLogin] = useState<boolean>(true);
+
+  useEffect(() => {
+    if (user) {
+      router.push("/dashboard/content");
+    }
+  }, []);
 
   return (
     <div className="flex flex-col gap-10 p-10">
