@@ -1,20 +1,27 @@
 import { useState } from "react";
-import { AddSomething, Chevron, Logo } from ".";
+import { AddSomething, Chevron, Input, Logo } from ".";
+import { Form } from "@/types";
 
 export const DropdownProject = ({
-  projectsName,
+  allForms,
+  selectedProjectName,
+  handleSelection,
+  handleAddForm,
 }: {
-  projectsName?: string[];
+  allForms: Form[];
+  selectedProjectName: string;
+  handleSelection: Function;
+  handleAddForm: Function;
 }) => {
   const [openDropdown, setOpenDropdown] = useState(false);
-
-  const createNewProject = () => {};
 
   return (
     <div className="flex gap-3 items-center">
       <Logo />
       <p className="text-2xl leading-none font-thin font-playfair">/</p>
-      <h2 className="text-2xl leading-none font-playfair">Formulaire 1</h2>
+      <h2 className="text-2xl leading-none font-playfair">
+        {selectedProjectName}
+      </h2>
       <div
         onClick={() => setOpenDropdown(!openDropdown)}
         className="flex flex-col gap-4 relative cursor-pointer"
@@ -24,14 +31,21 @@ export const DropdownProject = ({
         {openDropdown && (
           <div className="absolute top-[120%] flex flex-col w-max p-2 border border-primary-400 rounded-sm bg-white z-50">
             <h2 className="font-semibold">My forms</h2>
-            {!projectsName && (
-              <ul>
-                <li className="cursor-pointer">Formulaire 1</li>
-                <li className="cursor-pointer">Formulaire 2</li>
-              </ul>
-            )}
+            <ul>
+              {allForms.length
+                ? allForms.map((f, i) => (
+                    <li
+                      key={i}
+                      className="cursor-pointer"
+                      onClick={() => handleSelection(f._id)}
+                    >
+                      {f.projectName}
+                    </li>
+                  ))
+                : "No Form yet !"}
+            </ul>
             <AddSomething
-              handleClick={createNewProject}
+              handleClick={() => handleAddForm()}
               text="Create a new form ..."
             />
           </div>
