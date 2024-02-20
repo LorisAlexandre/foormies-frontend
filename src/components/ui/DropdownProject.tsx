@@ -1,18 +1,10 @@
 import { useState } from "react";
-import { AddSomething, Chevron, Input, Logo } from ".";
-import { Form } from "@/types";
+import { AddSomething, Chevron, Logo } from ".";
+import { useFoormiesContext } from "@/providers";
 
-export const DropdownProject = ({
-  allForms,
-  selectedProjectName,
-  handleSelection,
-  handleAddForm,
-}: {
-  allForms: Form[];
-  selectedProjectName: string;
-  handleSelection: Function;
-  handleAddForm: Function;
-}) => {
+export const DropdownProject = () => {
+  const { foormie, foormies, handleCreateFoormie, handleSelectionFoormie } =
+    useFoormiesContext();
   const [openDropdown, setOpenDropdown] = useState(false);
 
   return (
@@ -20,7 +12,7 @@ export const DropdownProject = ({
       <Logo />
       <p className="text-2xl leading-none font-thin font-playfair">/</p>
       <h2 className="text-2xl leading-none font-playfair">
-        {selectedProjectName}
+        {foormie?.projectName}
       </h2>
       <div
         onClick={() => setOpenDropdown(!openDropdown)}
@@ -32,12 +24,12 @@ export const DropdownProject = ({
           <div className="absolute top-[120%] flex flex-col w-max p-2 border border-primary-400 rounded-sm bg-white z-50">
             <h2 className="font-semibold">My forms</h2>
             <ul>
-              {allForms.length
-                ? allForms.map((f, i) => (
+              {foormies.length
+                ? foormies.map((f, i) => (
                     <li
                       key={i}
                       className="cursor-pointer"
-                      onClick={() => handleSelection(f._id)}
+                      onClick={() => handleSelectionFoormie(f._id)}
                     >
                       {f.projectName}
                     </li>
@@ -45,7 +37,7 @@ export const DropdownProject = ({
                 : "No Form yet !"}
             </ul>
             <AddSomething
-              handleClick={() => handleAddForm()}
+              handleClick={handleCreateFoormie}
               text="Create a new form ..."
             />
           </div>

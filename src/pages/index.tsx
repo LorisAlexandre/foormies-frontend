@@ -11,7 +11,7 @@ export default function Home() {
   const [login, setLogin] = useState<boolean>(true);
 
   useEffect(() => {
-    if (user) {
+    if (user.accessToken && user.refreshToken) {
       router.push("/dashboard/content");
     }
   }, []);

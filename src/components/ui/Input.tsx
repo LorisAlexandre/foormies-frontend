@@ -11,8 +11,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 
 export interface InputProps {
-  handleUpdate?: Function;
-  property?: string;
   label?: string;
 }
 
@@ -25,12 +23,6 @@ export const Input = (
 ) => {
   const [showPassword, setShowPassword] = useState(false);
 
-  const changeValue = (e: ChangeEvent<HTMLInputElement>) => {
-    if (props.handleUpdate !== undefined) {
-      props.handleUpdate(props.property, e.target.value);
-    }
-  };
-
   return (
     <div className="relative flex items-center gap-4">
       <span className="absolute -top-[35%] left-3 bg-white px-1">
@@ -38,9 +30,6 @@ export const Input = (
       </span>
       <input
         {...props}
-        onChange={(e) => {
-          props.onChange ? props.onChange(e) : changeValue(e);
-        }}
         value={props.value}
         className={`border border-primary-950 min-w-72 rounded-sm py-2 px-4 placeholder:font-thin placeholder:text-primary-400 ${props.className}`}
         type={

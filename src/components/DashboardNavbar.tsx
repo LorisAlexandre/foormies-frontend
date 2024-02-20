@@ -1,28 +1,15 @@
 import Image from "next/image";
 import { Button, Chevron, DropdownProject, User } from "./ui";
-import { Form } from "@/types";
+import { useFoormiesContext } from "@/providers";
 
-export const DashboardNavbar = ({
-  form,
-  allForms,
-  handleAddForm,
-  handleSelection,
-}: {
-  form?: Form;
-  allForms: Form[];
-  handleAddForm: Function;
-  handleSelection: Function;
-}) => {
+export const DashboardNavbar = () => {
+  const { foormie, handleCreateFoormie } = useFoormiesContext();
+
   const renderComponent = () => {
-    if (form) {
+    if (foormie?._id) {
       return (
         <div className="flex justify-between p-10 items-center">
-          <DropdownProject
-            selectedProjectName={form.projectName as string}
-            handleSelection={handleSelection}
-            handleAddForm={handleAddForm}
-            allForms={allForms}
-          />
+          <DropdownProject />
           <User />
         </div>
       );
@@ -31,12 +18,7 @@ export const DashboardNavbar = ({
         <div className="flex flex-col h-screen">
           <div className="flex justify-between p-10">
             <div className="relative flex">
-              <DropdownProject
-                handleSelection={handleSelection}
-                selectedProjectName="My First Form"
-                handleAddForm={handleAddForm}
-                allForms={allForms}
-              />
+              <DropdownProject />
               <Image
                 className="absolute left-[102%] bottom-3 -scale-x-100"
                 src={"/foormies.svg"}
@@ -71,12 +53,11 @@ export const DashboardNavbar = ({
                 </svg>
               </div>
             </div>
-            <Button onClick={() => handleAddForm()}>Create one !</Button>
+            <Button onClick={handleCreateFoormie}>Create one !</Button>
           </div>
         </div>
       );
     }
   };
-
   return <div>{renderComponent()}</div>;
 };
