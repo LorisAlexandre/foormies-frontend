@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { AddSomething, Chevron, Logo } from ".";
-import { useFoormiesContext } from "@/providers";
+import { useDashboardContext } from "@/providers";
 
 export const DropdownProject = () => {
-  const { foormie, foormies, handleCreateFoormie, handleSelectionFoormie } =
-    useFoormiesContext();
+  const { foormie, foormies, handleSelectionFoormie, handleCreateFoormie } =
+    useDashboardContext();
   const [openDropdown, setOpenDropdown] = useState(false);
 
   return (
@@ -12,7 +12,7 @@ export const DropdownProject = () => {
       <Logo />
       <p className="text-2xl leading-none font-thin font-playfair">/</p>
       <h2 className="text-2xl leading-none font-playfair">
-        {foormie?.projectName}
+        {foormie?.projectName ? foormie?.projectName : "My first foormie"}
       </h2>
       <div
         onClick={() => setOpenDropdown(!openDropdown)}

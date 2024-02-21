@@ -1,12 +1,19 @@
+import { Form } from "@/types";
 import { ToggleButton, Input, Button } from "../ui";
-import { useQuestionsContext } from "@/providers";
+import { useDashboardContext } from "@/providers";
 
 export const QuestionOptions = () => {
-  const { question, handleUpdateQuestion, handleSaveQuestion } =
-    useQuestionsContext();
+  const {
+    question,
+    questions,
+    foormie,
+    handleUpdateQuestion,
+    handleSaveQuestion,
+    handleUpdateFoormie,
+  } = useDashboardContext();
 
   if (!question) {
-    return <div>No question yet !</div>;
+    return null;
   }
 
   return (
@@ -15,14 +22,16 @@ export const QuestionOptions = () => {
         className={`font-playfair text-xl px-0 py-0 max-w-full border-none focus:outline-none`}
         style={{ width: Math.round((question.title.length * 29) / 20) * 10 }}
         value={question.title}
-        onChange={(e) => handleUpdateQuestion("title", e.target.value)}
+        onChange={(e) => {
+          handleUpdateQuestion("title", e.target.value);
+        }}
       />
       <div className="flex flex-col gap-4">
         <div className="flex flex-col gap-2">
           <ToggleButton
-            handleUpdate={() =>
-              handleUpdateQuestion("confidential", !question.confidential)
-            }
+            handleUpdate={() => {
+              handleUpdateQuestion("confidential", !question.confidential);
+            }}
             state={question.confidential}
             property="confidential"
           >

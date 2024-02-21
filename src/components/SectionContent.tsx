@@ -1,5 +1,5 @@
 import { MyQuestionsWidget, SectionDashboardNavbar } from ".";
-import { QuestionType, Response } from "@/types";
+import { QuestionType } from "@/types";
 import {
   CustomHTMLRendering,
   QuestionHTMLRendering,
@@ -7,40 +7,21 @@ import {
 } from "./widgets";
 import { Button, Input } from "./ui";
 import { useRouter } from "next/router";
-import {
-  QuestionsContext,
-  QuestionsContextType,
-  useFoormiesContext,
-} from "@/providers";
-import { useState } from "react";
+import { useDashboardContext } from "@/providers";
 
 export const SectionContent = () => {
   const router = useRouter();
   const section = router.query.section as string;
 
   const { foormie, handleUpdateFoormie, handleSaveFoormie } =
-    useFoormiesContext();
-
-  const [questions, setQuestions] = useState<QuestionType[]>(
-    foormie?.questions || []
-  );
-  const [question, setQuestion] = useState<QuestionType | undefined>(
-    foormie?.questions && foormie?.questions[0]
-  );
-
-  const contextValue: QuestionsContextType = {
-    questions,
-    setQuestions,
-    question,
-    setQuestion,
-  };
+    useDashboardContext();
 
   const renderComponent = () => {
     if (section === "content") {
       return (
         <>
           <MyQuestionsWidget />
-          {question && <QuestionOptions />}
+          <QuestionOptions />
           {/* {selectedQuestion && (
               <QuestionHTMLRendering question={selectedQuestion} />
             )}
@@ -55,7 +36,7 @@ export const SectionContent = () => {
   };
 
   return (
-    <QuestionsContext.Provider value={contextValue}>
+    <>
       <SectionDashboardNavbar section={section} />
       <div className="px-5 pt-2">
         <div className="flex items-center justify-between">
@@ -63,7 +44,7 @@ export const SectionContent = () => {
             className="text-2xl leading-none font-playfair border-none focus:outline-none"
             name="projectName"
             type="text"
-            value={foormie?.projectName}
+            value={foormie ? foormie?.projectName : "Project Name"}
             onChange={(e) => handleUpdateFoormie("projectName", e.target.value)}
           />
           <Button
@@ -75,6 +56,6 @@ export const SectionContent = () => {
         </div>
         <div className="flex flex-wrap px-10 gap-10">{renderComponent()}</div>
       </div>
-    </QuestionsContext.Provider>
+    </>
   );
 };

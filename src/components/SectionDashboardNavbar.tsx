@@ -44,7 +44,6 @@ export const SectionDashboardNavbar = ({ section }: { section: string }) => {
         </ul>
       </div>
       <div className="flex gap-2 py-5">
-        <Button>Modify</Button>
         <Button>Test it !</Button>
       </div>
     </div>

@@ -4,3 +4,4 @@ export { SectionContent } from "./SectionContent";
 export { MyQuestionsWidget } from "./widgets/MyQuestionsWidget";
 export { Login } from "./Login";
 export { Register } from "./Register";
+export { ShowError } from "./ShowError";

@@ -1,11 +1,10 @@
-import { useFoormiesContext, useQuestionsContext } from "@/providers";
+import { useDashboardContext } from "@/providers";
 import { Question } from "../cards";
 import { AddSomething } from "../ui";
 
 export const MyQuestionsWidget = () => {
-  const { foormie } = useFoormiesContext();
-  const { questions, handleSelectionQuestion, handleCreateQuestion } =
-    useQuestionsContext();
+  const { foormie, questions, handleSelectionQuestion, handleCreateQuestion } =
+    useDashboardContext();
 
   return (
     <div className="flex flex-col gap-6 items-start">
@@ -17,12 +16,12 @@ export const MyQuestionsWidget = () => {
             onClick={() => handleSelectionQuestion(q._id)}
             key={i}
           >
-            <Question {...q} />
+            <Question id={q._id} />
           </div>
         ))}
       <AddSomething
         text={"Add new questions ..."}
-        handleClick={() => handleCreateQuestion(foormie?._id)}
+        handleClick={() => foormie && handleCreateQuestion(foormie)}
       />
     </div>
   );

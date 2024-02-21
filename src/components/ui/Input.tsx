@@ -1,12 +1,4 @@
-import {
-  ChangeEvent,
-  DetailedHTMLProps,
-  Dispatch,
-  InputHTMLAttributes,
-  SetStateAction,
-  useState,
-} from "react";
-import { Button } from ".";
+import { DetailedHTMLProps, InputHTMLAttributes, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 
@@ -30,7 +22,6 @@ export const Input = (
       </span>
       <input
         {...props}
-        value={props.value}
         className={`border border-primary-950 min-w-72 rounded-sm py-2 px-4 placeholder:font-thin placeholder:text-primary-400 ${props.className}`}
         type={
           props.name === "password"

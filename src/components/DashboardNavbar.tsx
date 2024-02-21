@@ -1,9 +1,9 @@
 import Image from "next/image";
 import { Button, Chevron, DropdownProject, User } from "./ui";
-import { useFoormiesContext } from "@/providers";
+import { useDashboardContext } from "@/providers";
 
 export const DashboardNavbar = () => {
-  const { foormie, handleCreateFoormie } = useFoormiesContext();
+  const { foormie, handleCreateFoormie } = useDashboardContext();
 
   const renderComponent = () => {
     if (foormie?._id) {

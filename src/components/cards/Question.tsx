@@ -1,11 +1,25 @@
+import { QuestionType } from "@/types";
 import { Button } from "../ui";
+import { useDashboardContext } from "@/providers";
 
-export const Question = (props: QuestionType) => {
+export const Question = ({ id }: { id: QuestionType["_id"] }) => {
+  const { foormie, handleDeleteQuestion } = useDashboardContext();
+
+  if (!foormie?.questions) {
+    return;
+  }
+
+  const question = foormie?.questions.find((q) => q._id === id);
+
+  if (!question) {
+    return;
+  }
+
   return (
     <div className="flex w-[640px] border border-primary-950 px-5 py-2 items-center justify-between">
-      <p className="max-w-[300px]">{props.title}</p>
-      <p>{props.questionType}</p>
-      {props.requiredAnswer && <p>Required</p>}
+      <p className="max-w-[300px]">{question.title}</p>
+      <p>{question.questionType}</p>
+      {question.requiredAnswer && <p>Required</p>}
       <Button className="bg-transparent hover:bg-transparent cursor-grab">
         <svg
           width="11"
@@ -58,7 +72,12 @@ export const Question = (props: QuestionType) => {
           />
         </svg>
       </Button>
-      <Button className="bg-transparent hover:bg-transparent">
+      <Button
+        onClick={() =>
+          question._id === id && handleDeleteQuestion(question._id)
+        }
+        className="bg-transparent hover:bg-transparent"
+      >
         <svg
           width="14"
           height="14"

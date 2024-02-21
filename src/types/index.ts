@@ -6,4 +6,5 @@ export interface Response {
   error?: string;
   statusCode?: number;
   message?: string | string[];
+  deleted?: boolean;
 }
