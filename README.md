@@ -1,4 +1,4 @@
-# Foormies
+# Foormies - Réalisé avec Next.JS (page router)
 
 **Foormies** est une plateforme destinée aux entreprises qui permet de créer, gérer et analyser des formulaires de manière intuitive et efficace.
 
